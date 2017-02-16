@@ -1,5 +1,3 @@
->NOTE: The known regions which support managed disks are eastasia and southeastasia.
-
 ## A new deployment with a default storage account
 
 1. Deploy the bosh-setup template.
@@ -14,19 +12,17 @@
 
   1. Update the CPI release.
 
-    1. Click https://binximdstorageaccount.blob.core.windows.net/cpi-release?comp=list
-
-    1. Download the latest version (`20+dev.109.tgz`) of CPI release into the devbox.
+    1. Download the latest version of CPI release into the devbox.
 
       ```
-      wget https://binximdstorageaccount.blob.core.windows.net/cpi-release/bosh-azure-cpi-20+dev.109.tgz
+      wget https://s3.amazonaws.com/binxi-pipeline-bucket/bosh-azure-cpi-0.0.86.tgz
       ```
 
     1. Update bosh.yml
 
       ```
       - name: bosh-azure-cpi
-        url: file://~/bosh-azure-cpi-20+dev.109.tgz
+        url: file://~/bosh-azure-cpi-0.0.86.tgz
       ```
 
     1. Remove `storage_account_name`
@@ -58,19 +54,17 @@
 
   1. Update the CPI release.
 
-    1. Click https://binximdstorageaccount.blob.core.windows.net/cpi-release?comp=list
-
-    1. Download the latest version (`20+dev.109.tgz`) of CPI release into the devbox.
+    1. Download the latest version of CPI release into the devbox.
 
       ```
-      wget https://binximdstorageaccount.blob.core.windows.net/cpi-release/bosh-azure-cpi-20+dev.109.tgz
+      wget https://s3.amazonaws.com/binxi-pipeline-bucket/bosh-azure-cpi-0.0.86.tgz
       ```
 
     1. Update bosh.yml
 
       ```
       - name: bosh-azure-cpi
-        url: file://~/bosh-azure-cpi-20+dev.109.tgz
+        url: file://~/bosh-azure-cpi-0.0.86.tgz
       ```
 
     1. Add `use_managed_disks`
