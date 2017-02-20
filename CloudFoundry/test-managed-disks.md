@@ -2,8 +2,6 @@
 
 1. Deploy the bosh-setup template.
 
-  * The location should be Southeast Asia.
-
   * Disable the parameter "autoDeployBosh"
 
 1. Update bosh.yml, and deploy BOSH.
@@ -25,7 +23,7 @@
         url: file://~/bosh-azure-cpi-0.0.86.tgz
       ```
 
-    1. Remove `storage_account_name`
+    1. Remove `storage_account_name`.
 
     1. Add `use_managed_disks`
 
@@ -46,7 +44,7 @@
 
 ## Upgrading from an existing blob based deployment
 
-1. You already have an existing blob based CF deployment in Southeast Asia.
+1. You already have an existing blob based CF deployment.
 
 1. Update bosh.yml, and re-deploy BOSH.
 
@@ -85,24 +83,9 @@
   bosh recreate --force
   ```
 
-1. Setup the env variables for the default storage account. Check the tagged blob based disks. You can get the metadata.
-
-  ```
-  "metadata": {
-    "user_agent": "bosh",
-    "migrated": "true"
-  }
-  ```
-
-  ```
-  export AZURE_STORAGE_ACCOUNT="<name>"
-  export AZURE_STORAGE_ACCESS_KEY="<key>"
-  azure storage blob list --container bosh -p bosh-data --json
-  ```
-
 ## A new deployment without a default storage account
 
-1. Deploy a simple environment in Southeast Asia.
+1. Deploy a simple environment.
 
   https://github.com/bingosummer/azure-quickstart-templates/tree/simple-bosh-setup/simple-bosh-setup
   
@@ -122,15 +105,15 @@
     ```
     networks:
     - {name: private, static_ips: [10.0.0.4], default: [dns, gateway]}
-    - {name: public, static_ips: [52.163.225.115]}
+    - {name: public, static_ips: [xxx.xxx.xxx.xxx]}
     
     ssh_tunnel:
-    host: 52.163.225.115
+    host: xxx.xxx.xxx.xxx
     port: 22
     user: vcap # The user must be as same as above ssh_user
     private_key: ~/bosh
     
-    mbus: https://mbus-user:4rndLXEyPWSzODMufg@52.163.225.115:6868
+    mbus: https://mbus-user:xxxxxxxxxxxxxxxx@xxx.xxx.xxx.xxx:6868
     ```
   
   1. Deploy BOSH
@@ -150,14 +133,14 @@
 
 ## A new deployment without a default storage account (cross-region)
 
-1. Deploy a simple environment in Southeast Asia.
+1. Deploy a simple environment.
 
   https://github.com/bingosummer/azure-quickstart-templates/tree/simple-bosh-setup/simple-bosh-setup
   
   In this deployment, there are no storage accounts and devbox. Only the neccessary network resources are created.
   The following steps are done in the devbox of the previous deployment "A new deployment with a default storage account".
 
-1. Create a resource group in East Asia, and move all the resources into this group.
+1. Create a resource group in another region, and move all the resources into this group.
 
 1. Copy bosh.yml to bosh.cross-region.yml
 
@@ -172,15 +155,15 @@
     ```
     networks:
     - {name: private, static_ips: [10.0.0.4], default: [dns, gateway]}
-    - {name: public, static_ips: [52.163.225.115]}
+    - {name: public, static_ips: [xxx.xxx.xxx.xxx]}
     
     ssh_tunnel:
-    host: 52.163.225.115
+    host: xxx.xxx.xxx.xxx
     port: 22
     user: vcap # The user must be as same as above ssh_user
     private_key: ~/bosh
     
-    mbus: https://mbus-user:4rndLXEyPWSzODMufg@52.163.225.115:6868
+    mbus: https://mbus-user:xxxxxxxx@xxx.xxx.xxx.xxx:6868
     ```
 
   1. Add `storage_account_locaiton: southeastasia` in `resource_pool`.
